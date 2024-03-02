@@ -7,3 +7,7 @@
     • First we display the first name and then map the items and display remaining things inside folder
     • We make if else conditions to show folder or file icon depending on isFolder property of json data
     • We make a state to show and hide items when clicked
+    • Now we add 2 buttons to add folder and files
+    • Both should open the input box to add file name , where we need state with initial state as object with visible and isFolder prooperty
+    • We check the keycode of the key entered , 13 is keycode of enter button , then we build logic
+    • we create a new hook to put the logic of inserting new item into the tree
