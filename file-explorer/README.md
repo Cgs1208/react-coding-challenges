@@ -11,3 +11,4 @@
     • Both should open the input box to add file name , where we need state with initial state as object with visible and isFolder prooperty
     • We check the keycode of the key entered , 13 is keycode of enter button , then we build logic
     • we create a new hook to put the logic of inserting new item into the tree
+    • We import the new hook in app.js and then send it to folder component and call it for onkeydown of input tag
