@@ -3,21 +3,35 @@ body {
 }
 
 .app {
-  height: 20px;
-  padding: 4px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
   align-items: center;
+  gap: 7px;
 }
 
 .progress {
-  background-color: rgb(227, 221, 221);
-  border: 1px solid black;
-  width: 60%;
-  border-radius: 10px;
+  position: relative; /* with scale */
+  height: 20px;
+  width: 500px;
+  background-color: rgb(233, 236, 239);
+  border: 1px solid #c5c5c5;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.progress div {
+  background-color: #00c251;
+  color: #fff;
+  height: 100%;
+  text-align: center;
+}
+
+.progress span {
+  position: absolute;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  z-index: 99;
 }
