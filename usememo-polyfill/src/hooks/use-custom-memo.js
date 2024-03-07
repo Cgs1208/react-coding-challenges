@@ -12,26 +12,26 @@ const areEqual = (prevDeps, nextDeps) => {
 };
 
 export const useCustomMemo = (cb, deps) => {
-  //varibale or state for cached value
+  //variable or state for cached value
   const memoizedRef = useRef(null);
 
-  //changes in deps
+  //check changes in dependencies
   if (!memoizedRef.current || !areEqual(memoizedRef.current.deps, deps)) {
     memoizedRef.current = {
-      //this is our cache
+      //this is our cache to store function and dependencies
       value: cb(),
       deps,
     };
   }
 
-  //clenup logic
+  //clenup logic using cleanup function of useEffect
   useEffect(() => {
     return () => {
       memoizedRef.current = null;
     };
   }, []);
 
-  //return memoised value
+  //return memoised value back
   return memoizedRef.current.value;
 };
 
