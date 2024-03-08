@@ -28,3 +28,7 @@
   background-color: var(--active-color);
   color: #fff;
 }
+
+.error {
+  font-size: 12px;
+}

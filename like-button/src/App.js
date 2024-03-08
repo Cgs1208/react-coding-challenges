@@ -18,7 +18,14 @@ function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: liked ? "unlike" : "like" }),
       });
-      console.log(await response.json());
+
+      if (response.status >= 200 && response.status < 300) {
+        setLiked(!liked);
+      } else {
+        const res = await response.json();
+        setError(res.message);
+        return;
+      }
     } finally {
       setIsFetching(false);
     }
@@ -29,12 +36,14 @@ function App() {
   return (
     <div className="App">
       <button
+        disabled={isFetching}
         className={`likeBtn ${liked ? "liked" : ""}`}
         onClick={handleLikeUnlike}
       >
-        <HeartIcon />
+        {isFetching ? <SpinnerIcon /> : <HeartIcon />}
         {liked ? "Liked" : "Like"}
       </button>
+      {error && <div className="error">{error}</div>}
     </div>
   );
 }
