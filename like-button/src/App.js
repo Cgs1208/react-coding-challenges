@@ -29,8 +29,6 @@ function App() {
     } finally {
       setIsFetching(false);
     }
-
-    setLiked(!liked);
   };
 
   return (
