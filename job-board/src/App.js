@@ -1,20 +1,39 @@
 import "./App.css";
 import JobPosting from "./components/JobPosting";
 import { API_ENDPOINT, ITEMS_PER_PAGE } from "./constants";
-import { useState } from "react";
-
-const EXAMPLE = {
-  by: "jamilbk",
-  id: 35908337,
-  score: 1,
-  time: 1683838872,
-  title: "Firezone (YC W22) is hiring Elixir and Rust engineers",
-  type: "job",
-  url: "https://www.ycombinator.com/companies/firezone/jobs",
-};
+import { useEffect, useState } from "react";
 
 function App() {
-  const [items, setItems] = useState([EXAMPLE, EXAMPLE]); //holds all of our job hostings
+  const [items, setItems] = useState([]); //holds all of our job hostings
+  const [itemsId, setItemsId] = useState(null);
+  const [isFetching, setIsFetching] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const fetchItems = async (currentPage) => {
+    setCurrentPage(currentPage);
+    setIsFetching(true);
+
+    let itemsIdList = itemsId;
+    if (itemsIdList === null) {
+      const response = await fetch(`${API_ENDPOINT}/jobstories.json`);
+      itemsIdList = await response.json();
+      setItemsId(itemsIdList);
+    }
+
+    const itemsIdForPage = itemsIdList;
+    const itemsPerPage = await Promise.all(
+      itemsIdForPage.map((itemId) =>
+        fetch(`${API_ENDPOINT}/item/${itemId}.json`).then((res) => res.json())
+      )
+    );
+
+    setItems([...items, ...itemsPerPage]);
+    setIsFetching(false);
+  };
+
+  useEffect(() => {
+    if (currentPage === 0) fetchItems(0);
+  }, []);
 
   return (
     <div className="app">

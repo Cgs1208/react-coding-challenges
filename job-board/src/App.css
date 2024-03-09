@@ -77,3 +77,8 @@ a:hover {
   color: #f6f6ef;
   background-color: orangered;
 }
+
+.load-more:hover {
+  background-color: rgb(241, 126, 77);
+  border: 1px solid black;
+}
