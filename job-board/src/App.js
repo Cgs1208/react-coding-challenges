@@ -52,7 +52,11 @@ function App() {
           })}
         </div>
       )}
-      <button className="load-more" onClick={() => fetchItems(currentPage + 1)}>
+      <button
+        className="load-more"
+        onClick={() => fetchItems(currentPage + 1)}
+        disabled={isFetching}
+      >
         {isFetching ? "Loading" : "Load more jobs"}
       </button>
     </div>

@@ -82,3 +82,7 @@ a:hover {
   background-color: rgb(241, 126, 77);
   border: 1px solid black;
 }
+
+.load-more:disabled {
+  background-color: gray;
+}
