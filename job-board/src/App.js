@@ -20,7 +20,12 @@ function App() {
       setItemsId(itemsIdList);
     }
 
-    const itemsIdForPage = itemsIdList;
+    //pagination logic
+    const itemsIdForPage = itemsIdList.slice(
+      currentPage * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE + ITEMS_PER_PAGE
+    );
+
     const itemsPerPage = await Promise.all(
       itemsIdForPage.map((itemId) =>
         fetch(`${API_ENDPOINT}/item/${itemId}.json`).then((res) => res.json())
@@ -38,7 +43,7 @@ function App() {
   return (
     <div className="app">
       <h1 className="title">Hacker News Job Board</h1>
-      {items.length < 1 ? (
+      {itemsId === null || items.length < 1 ? (
         <p className="loading">Loading...</p>
       ) : (
         <div className="items" role="list">
@@ -47,7 +52,9 @@ function App() {
           })}
         </div>
       )}
-      <button className="load-more">Load more jobs</button>
+      <button className="load-more" onClick={() => fetchItems(currentPage + 1)}>
+        {isFetching ? "Loading" : "Load more jobs"}
+      </button>
     </div>
   );
 }
