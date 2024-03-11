@@ -7,6 +7,9 @@ const Counter = () => {
 
   useCustomEffect(() => {
     console.log("Effect triggered", counter1);
+    return () => {
+      console.log("cleanup");
+    };
   }, [counter1]);
 
   console.log("rerendering");

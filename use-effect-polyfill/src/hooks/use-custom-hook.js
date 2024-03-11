@@ -7,8 +7,10 @@ export const useCustomEffect = (effect, deps) => {
   //first render
   if (isFirstRender.current) {
     isFirstRender.current = false;
-    effect();
-    return;
+    const cleanup = effect();
+    return () => {
+      if (cleanup && typeof cleanup === "function") cleanup();
+    };
   }
 
   //dependencies changed or no dependencies
@@ -16,7 +18,8 @@ export const useCustomEffect = (effect, deps) => {
     ? JSON.stringify(prevDeps.current) !== JSON.stringify(deps)
     : true;
   if (depsChanged) {
-    effect();
+    const cleanup = effect();
+    if (cleanup && typeof cleanup === "function" && deps) cleanup();
   }
 
   //cleanup
