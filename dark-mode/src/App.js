@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import { ThemeProvider } from "./theme-context";
+import Blog from "./pages/Blog";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

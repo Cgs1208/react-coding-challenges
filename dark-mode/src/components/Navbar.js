@@ -10,6 +10,17 @@ const Navbar = () => {
       <div>
         <Link to="/">Homepage</Link>
         <Link to="about">About</Link>
+        <Link to="blog">Blog</Link>
+      </div>
+      <div className="mode-switch">
+        <label>
+          <input
+            type="checkbox"
+            onChange={toggleTheme}
+            checked={theme === "dark"}
+          />
+          <span className="slider round"></span>
+        </label>
       </div>
     </nav>
   );
