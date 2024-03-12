@@ -1,4 +1,18 @@
+[data-theme="dark"] {
+  --bg-color: black;
+  --text-color: white;
+  --heading-color: rgb(129, 123, 123);
+}
+
+[data-theme="light"] {
+  --bg-color: white;
+  --text-color: black;
+  --heading-color: black;
+}
+
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: sans-serif;
   margin: 0;
   padding: 0 20px;
@@ -8,6 +22,10 @@ body {
   display: flex;
   flex-direction: column;
   height: 92vh;
+}
+
+h1 {
+  color: var(--heading-color);
 }
 
 .navbar {
