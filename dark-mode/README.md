@@ -1,0 +1,8 @@
+- dark mode question is very famous interview question out of all
+- here we use react router and navbar to navigate between the pages (we can use anything to display)
+- things like theme where it is requried all over the app can be kept in contextAPI
+- we can also use redux for this but since redux is not for simple things like these we use contextAPI
+- we create the context with state for darkMode and also a toggle function to change the dark mode
+- we are setting data attribute to the document so that we can use that in styling according to what it is set to
+- finally we create a checkbox to enable and disable the dark mode
+- if we need we can make better slider bar for the dark mode enabling
