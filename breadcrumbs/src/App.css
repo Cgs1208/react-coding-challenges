@@ -1,0 +1,28 @@
+.App {
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px 0;
+}
+
+.product-card {
+  border: 1px solid gray;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-card a {
+  text-decoration: none;
+  color: black;
+}
+
+.product-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
