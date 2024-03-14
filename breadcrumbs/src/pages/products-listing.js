@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Home = () => {
-  const [trendingProducts, setTrendingProducts] = useState([]);
+const ProductsListing = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const fetchItems = async () => {
+  const fetchAllProducts = async () => {
+    setLoading(true);
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
-    const slicedProducts = data.products.slice(0, 6);
-    setTrendingProducts(slicedProducts);
+    setProducts(data.products);
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchItems();
+    fetchAllProducts();
   }, []);
+
+  if (loading)
+    return (
+      <h3 style={{ display: "flex", justifyContent: "center" }}>Loading...</h3>
+    );
 
   return (
     <div>
@@ -24,10 +31,10 @@ const Home = () => {
           justifyContent: "center",
         }}
       >
-        Trending Products 🔥
+        Products Listing
       </h2>
       <div className="products-grid">
-        {trendingProducts.map((product) => {
+        {products?.map((product) => {
           return (
             <div key={product.id} className="product-card">
               <Link to={`/products/${product.id}`}>
@@ -39,13 +46,8 @@ const Home = () => {
           );
         })}
       </div>
-      <Link to="/products">
-        <button style={{ width: "100%", padding: "10px", fontWeight: "bold" }}>
-          View all Products
-        </button>
-      </Link>
     </div>
   );
 };
 
-export default Home;
+export default ProductsListing;
