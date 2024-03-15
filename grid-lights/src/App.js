@@ -39,7 +39,7 @@ export default function App() {
   };
 
   return (
-    <div className="wrapper">
+    <div style={{ marginTop: "80px" }} className="wrapper">
       <div
         className="grid"
         style={{
