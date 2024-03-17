@@ -1,11 +1,14 @@
 import { useState } from "react";
+import PhoneOtpForm from "./components/PhoneLogin";
+import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
-      <h1>hey</h1>
+    <div className="app">
+      <h1>Phone OTP login</h1>
+      <PhoneOtpForm />
     </div>
   );
 }
