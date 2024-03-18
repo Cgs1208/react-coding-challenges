@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const OtpInput = ({ length, onOtpSubmit = () => {} }) => {
-  const [otp, setOtp] = useState(new Array(4).fill(""));
+const OtpInput = ({ length = 4, onOtpSubmit }) => {
+  const [otp, setOtp] = useState(new Array(length).fill("")); //+length + to convert "4" to 4
+
+  const inputRef = useRef([]);
+
+  useEffect(() => {
+    if (inputRef.current[0]) inputRef.current[0].focus();
+  }, []);
 
   const handleChange = (event, index) => {
-    // You should implement this function to handle input change
+    const value = event.target.value;
+    if (isNaN(value)) return;
+
+    const newOtp = [...otp];
+    //allow one input
+    newOtp[index] = value.substring(value.length - 1);
+    setOtp(newOtp);
+
+    //submit trigger
+    const combinedOtp = newOtp.join("");
+    if (combinedOtp.length === length) onOtpSubmit(combinedOtp);
   };
 
   const handleClick = () => {
@@ -22,6 +38,7 @@ const OtpInput = ({ length, onOtpSubmit = () => {} }) => {
           key={index}
           value={value}
           type="text"
+          ref={(input) => (inputRef.current[index] = input)}
           onChange={(e) => handleChange(e, index)}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
