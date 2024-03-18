@@ -28,7 +28,14 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
     }
   };
 
-  const handleClick = () => {};
+  const handleClick = (index) => {
+    inputRef.current[index].setSelectionRange(1, 1);
+
+    //optional validation to move focus to first empty space found in otp input field
+    if (index > 0 && !otp[index - 1]) {
+      inputRef.current[otp.indexOf("")].focus();
+    }
+  };
 
   const handleKeyDown = (e, index) => {
     if (
@@ -37,6 +44,7 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
       index > 0 &&
       inputRef.current[index - 1]
     ) {
+      //move the focus to the previous input field when backspace is entered
       inputRef.current[index - 1].focus();
     }
   };
@@ -50,7 +58,7 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
           type="text"
           ref={(input) => (inputRef.current[index] = input)}
           onChange={(e) => handleChange(e, index)}
-          onClick={handleClick}
+          onClick={() => handleClick(index)}
           onKeyDown={(e) => handleKeyDown(e, index)}
           className="otpInput"
         />
