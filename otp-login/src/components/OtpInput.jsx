@@ -21,14 +21,24 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
     //submit trigger
     const combinedOtp = newOtp.join("");
     if (combinedOtp.length === length) onOtpSubmit(combinedOtp);
+
+    //move to next input field if current field is filled
+    if (value && index < length - 1 && inputRef.current[index + 1]) {
+      inputRef.current[index + 1].focus();
+    }
   };
 
-  const handleClick = () => {
-    // You should implement this function if necessary
-  };
+  const handleClick = () => {};
 
-  const handleKeyDown = () => {
-    // You should implement this function if necessary
+  const handleKeyDown = (e, index) => {
+    if (
+      e.key === "Backspace" &&
+      !otp[index] &&
+      index > 0 &&
+      inputRef.current[index - 1]
+    ) {
+      inputRef.current[index - 1].focus();
+    }
   };
 
   return (
@@ -41,7 +51,7 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
           ref={(input) => (inputRef.current[index] = input)}
           onChange={(e) => handleChange(e, index)}
           onClick={handleClick}
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) => handleKeyDown(e, index)}
           className="otpInput"
         />
       ))}
