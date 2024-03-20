@@ -9,7 +9,6 @@ function App() {
         <input type="text" />
         {/* search suggestions */}
       </div>
-      <h1>hey</h1>
     </div>
   );
 }
