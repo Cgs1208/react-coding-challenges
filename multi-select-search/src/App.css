@@ -1,3 +1,30 @@
 body {
   font-family: sans-serif;
 }
+
+.user-search-container {
+  display: flex;
+  position: relative;
+  margin: 4px;
+}
+
+.user-search-input {
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  border: 1px solid gray;
+  padding: 5px;
+  gap: 8px;
+  align-items: center;
+}
+
+.user-search-input input {
+  border: none;
+  height: 19px;
+  padding: 6px;
+}
+
+.user-search-input input:focus {
+  outline: none;
+}
