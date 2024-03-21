@@ -6,6 +6,7 @@ const URL = "https://dummyjson.com/users/search?q=";
 function App() {
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState([]);
 
   const fetchUsers = async () => {
     const response = await fetch(`${URL}${searchText}`);
@@ -20,6 +21,15 @@ function App() {
     }
     fetchUsers();
   }, [searchText]);
+
+  const handleSelectedUsers = (user) => {
+    if (typeof user === "object" && user !== null) {
+      setSelectedUsers([...selectedUsers, user]);
+      setSearchText("");
+      setSuggestions([]);
+    }
+  };
+  console.log(selectedUsers);
 
   return (
     <div className="user-search-container">
@@ -37,7 +47,7 @@ function App() {
           <ul className="suggestions-list">
             {suggestions?.users?.map((user, index) => {
               return (
-                <li key={user.email}>
+                <li key={user.email} onClick={() => handleSelectedUsers(user)}>
                   <img
                     src={user.image}
                     alt={`${user.firstName} ${user.lastName}`}
