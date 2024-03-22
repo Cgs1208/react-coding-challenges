@@ -8,6 +8,8 @@ function App() {
   const [suggestions, setSuggestions] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
 
+  const [selectedUsersSet, setSelectedUsersSet] = useState(new Set());
+
   const fetchUsers = async () => {
     const response = await fetch(`${URL}${searchText}`);
     const data = await response.json();
@@ -25,6 +27,7 @@ function App() {
   const handleSelectedUsers = (user) => {
     if (typeof user === "object" && user !== null) {
       setSelectedUsers([...selectedUsers, user]);
+      setSelectedUsersSet(new Set([...selectedUsersSet, user.email]));
       setSearchText("");
       setSuggestions([]);
     }
@@ -46,7 +49,7 @@ function App() {
           {/* search suggestions */}
           <ul className="suggestions-list">
             {suggestions?.users?.map((user, index) => {
-              return (
+              return !selectedUsersSet.has(user.email) ? (
                 <li key={user.email} onClick={() => handleSelectedUsers(user)}>
                   <img
                     src={user.image}
@@ -56,6 +59,8 @@ function App() {
                     {user.firstName} {user.lastName}
                   </span>
                 </li>
+              ) : (
+                <></>
               );
             })}
           </ul>
