@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Pills from "./components/Pills";
 
 const URL = "https://dummyjson.com/users/search?q=";
@@ -8,6 +8,8 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+
+  const inputRef = useRef(null);
 
   const [selectedUsersSet, setSelectedUsersSet] = useState(new Set());
 
@@ -31,6 +33,7 @@ function App() {
       setSelectedUsersSet(new Set([...selectedUsersSet, user.email]));
       setSearchText("");
       setSuggestions([]);
+      inputRef.current.focus();
     }
   };
   console.log(selectedUsers);
@@ -63,6 +66,7 @@ function App() {
         {/* input field with suggestions */}
         <div>
           <input
+            ref={inputRef}
             type="text"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
