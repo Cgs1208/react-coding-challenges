@@ -20,11 +20,16 @@ function App() {
   };
 
   useEffect(() => {
-    if (searchText.trim() === "") {
-      setSuggestions([]);
-      return;
-    }
-    fetchUsers();
+    const timer = setTimeout(() => {
+      if (searchText.trim() === "") {
+        setSuggestions([]);
+        return;
+      }
+      fetchUsers();
+    }, 300);
+
+    // Cleanup function to clear the timeout on component unmount or when searchText changes
+    return () => clearTimeout(timer);
   }, [searchText]);
 
   const handleSelectedUsers = (user) => {
