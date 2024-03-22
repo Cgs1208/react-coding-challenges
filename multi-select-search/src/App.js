@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import Pills from "./components/Pills";
 
 const URL = "https://dummyjson.com/users/search?q=";
 
@@ -34,10 +35,31 @@ function App() {
   };
   console.log(selectedUsers);
 
+  const handleRemoveUser = (user) => {
+    const updatedUsers = selectedUsers.filter(
+      (selectedUser) => selectedUser.email !== user.email
+    );
+    setSelectedUsers(updatedUsers);
+
+    const updatedEmails = new Set(selectedUsersSet);
+    updatedEmails.delete(user.email);
+    setSelectedUsersSet(updatedEmails);
+  };
+
   return (
     <div className="user-search-container">
       <div className="user-search-input">
         {/* pills */}
+        {selectedUsers.map((user) => {
+          return (
+            <Pills
+              key={user.email}
+              image={user.image}
+              text={`${user.firstName} ${user.lastName}`}
+              onClick={() => handleRemoveUser(user)}
+            />
+          );
+        })}
         {/* input field with suggestions */}
         <div>
           <input
