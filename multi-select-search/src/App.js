@@ -36,7 +36,6 @@ function App() {
       inputRef.current.focus();
     }
   };
-  console.log(selectedUsers);
 
   const handleRemoveUser = (user) => {
     const updatedUsers = selectedUsers.filter(
@@ -47,6 +46,18 @@ function App() {
     const updatedEmails = new Set(selectedUsersSet);
     updatedEmails.delete(user.email);
     setSelectedUsersSet(updatedEmails);
+  };
+
+  const handleKeyDown = (e) => {
+    if (
+      e.key === "Backspace" &&
+      e.target.value === "" &&
+      selectedUsers.length > 0
+    ) {
+      const lastUser = selectedUsers[selectedUsers.length - 1];
+      handleRemoveUser(lastUser);
+      setSuggestions([]);
+    }
   };
 
   return (
@@ -71,6 +82,7 @@ function App() {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search an user"
+            onKeyDown={handleKeyDown}
           />
           {/* search suggestions */}
           <ul className="suggestions-list">
