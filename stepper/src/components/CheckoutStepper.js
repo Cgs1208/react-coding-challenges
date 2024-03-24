@@ -7,7 +7,7 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
 
   const handleNext = () => {
     setCurrentStep((prevStep) => {
-      if (prevStep === currentStep.length) {
+      if (prevStep === stepsConfig.length) {
         setIsComplete(true);
         return prevStep;
       } else {
@@ -17,6 +17,10 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
   };
 
   if (!stepsConfig.length) return <></>;
+
+  const calculateProgressBarWidth = () => {
+    return ((currentStep - 1) / (stepsConfig.length - 1)) * 100;
+  };
 
   const ActiveComponent = stepsConfig[currentStep - 1]?.Component;
 
@@ -43,17 +47,20 @@ const CheckoutStepper = ({ stepsConfig = [] }) => {
             </div>
           );
         })}
+
+        <div className="progress-bar">
+          <div
+            className="progress"
+            style={{ width: `${calculateProgressBarWidth()}%` }}
+          ></div>
+        </div>
       </div>
 
       <ActiveComponent />
 
       {!isComplete && (
-        <button
-          disabled={currentStep === stepsConfig.length ? true : false}
-          className="btn"
-          onClick={handleNext}
-        >
-          {currentStep === stepsConfig.length ? "Finished" : "Next"}
+        <button className="btn" onClick={handleNext}>
+          {currentStep === stepsConfig.length ? "Finish" : "Next"}
         </button>
       )}
     </>

@@ -37,3 +37,18 @@
   background-color: green;
   color: white;
 }
+
+.progress-bar {
+  height: 4px;
+  width: 100%;
+  background-color: #ccc;
+  left: 0;
+  top: 21%;
+  position: absolute;
+}
+
+.progress {
+  height: 100%;
+  background-color: rgb(144, 222, 27);
+  transition: 0.2s ease;
+}
