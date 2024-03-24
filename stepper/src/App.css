@@ -39,12 +39,12 @@
 }
 
 .progress-bar {
+  position: absolute;
   height: 4px;
   width: 100%;
   background-color: #ccc;
   left: 0;
-  top: 21%;
-  position: absolute;
+  top: 14%;
 }
 
 .progress {
