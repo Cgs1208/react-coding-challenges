@@ -27,3 +27,13 @@
 .step-name {
   font-size: 16px;
 }
+
+.active .step-number {
+  background-color: blue;
+  color: white;
+}
+
+.complete .step-number {
+  background-color: green;
+  color: white;
+}
