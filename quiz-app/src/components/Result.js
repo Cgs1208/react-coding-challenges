@@ -15,6 +15,15 @@ const Result = ({ userAnswers, questions, OnResetQuiz = () => {} }) => {
         >
           Retry quiz
         </button>
+        <ul>
+          {questions.map((question, index) => {
+            return (
+              <li key={question.question} data-correct={userAnswers[index]}>
+                Q{index + 1}. {question.question}
+              </li>
+            );
+          })}
+        </ul>
       </p>
     </div>
   );

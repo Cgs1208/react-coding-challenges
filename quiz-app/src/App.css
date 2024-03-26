@@ -37,3 +37,26 @@ button:hover {
   background-color: #ddd;
   cursor: pointer;
 }
+
+.results {
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.results ul {
+  list-style: none;
+  padding: 0;
+}
+
+.results li {
+  margin-bottom: 10px;
+}
+
+.results li[data-correct="true"] {
+  color: green;
+}
+.results li[data-correct="false"] {
+  color: red;
+}
