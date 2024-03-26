@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import questions from "./constants/constants.json";
 import Question from "./components/Question";
+import Result from "./components/Result";
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -10,6 +11,11 @@ function App() {
   const handleAnswerClick = (isCorrect) => {
     setCurrentQuestion(currentQuestion + 1);
     setUsersAnwers([...usersAnswers, isCorrect]);
+  };
+
+  const handleResetQuiz = () => {
+    setCurrentQuestion(0);
+    setUsersAnwers([]);
   };
 
   return (
@@ -23,6 +29,13 @@ function App() {
         />
       )}
       {/* result component  */}
+      {currentQuestion === questions.length && (
+        <Result
+          userAnswers={usersAnswers}
+          questions={questions}
+          OnResetQuiz={handleResetQuiz}
+        />
+      )}
     </div>
   );
 }

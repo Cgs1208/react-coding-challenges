@@ -1,6 +1,6 @@
 import React from "react";
 
-const Question = ({ question, onAnswerClick }) => {
+const Question = ({ question, onAnswerClick = () => {} }) => {
   return (
     <div className="question">
       <h2>{question.question}</h2>
