@@ -52,13 +52,15 @@ function App() {
           })}
         </div>
       )}
-      <button
-        className="load-more"
-        onClick={() => fetchItems(currentPage + 1)}
-        disabled={isFetching}
-      >
-        {isFetching ? "Loading" : "Load more jobs"}
-      </button>
+      {!isFetching && (
+        <button
+          className="load-more"
+          onClick={() => fetchItems(currentPage + 1)}
+          disabled={isFetching}
+        >
+          Load More Jobs
+        </button>
+      )}
     </div>
   );
 }
