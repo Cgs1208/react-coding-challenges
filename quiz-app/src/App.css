@@ -4,4 +4,36 @@ body {
 
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question {
+  border: 1px solid #ddd;
+  width: 50%;
+  box-shadow: bisque;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  margin-right: 22px;
+}
+
+.options li {
+  list-style: none;
+}
+
+button {
+  padding: 10px 20px;
+  border: 1px solid white;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #ddd;
+  cursor: pointer;
 }
