@@ -3,15 +3,13 @@
   const data = await response.json();
 
   const employees = data;
-  const selectedEmployeeId = employees[0].id;
-  const selectedEmployee = employees[0];
+  let selectedEmployeeId = employees[0].id;
+  let selectedEmployee = employees[0];
 
   const employeeList = document.querySelector(".employees__names--list");
   const employeeInfo = document.querySelector(".employees__single--info");
 
   //Add employee logic
-
-  //selecting employee logic
 
   // Render All Employees Logic start
   const renderEmployees = () => {
@@ -28,7 +26,15 @@
       employeeList.append(employee);
     });
   };
+  renderEmployees();
   // Render All Employees Logic end
 
-  renderEmployee();
+  employeeList.addEventListener("click", (e) => {
+    // Select Employee Logic - START
+    if (e.target.tagName === "SPAN" && selectedEmployeeId !== e.target.id) {
+      selectedEmployeeId = e.target.id;
+      renderEmployees();
+      //renderSingleEmployee();
+    }
+  });
 })();
