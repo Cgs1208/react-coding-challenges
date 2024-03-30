@@ -58,3 +58,25 @@ body {
   text-align: center;
   border-bottom: 1px solid black;
 }
+
+.employees__names--list {
+  display: flex;
+  flex-direction: column;
+}
+
+.employees__names--item {
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  text-align: center;
+  background-color: var(--item-bg);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.employees__names--item:hover,
+.selected {
+  background-color: var(--btn);
+}
