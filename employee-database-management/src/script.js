@@ -34,7 +34,28 @@
     if (e.target.tagName === "SPAN" && selectedEmployeeId !== e.target.id) {
       selectedEmployeeId = e.target.id;
       renderEmployees();
-      //renderSingleEmployee();
+      renderSingleEmployee();
     }
   });
+
+  // Render Single Employee Logic - START
+  const renderSingleEmployee = () => {
+    // Employee Delete Logic - START
+    if (selectedEmployeeId === -1) {
+      employeeInfo.innerHTML = "";
+      return;
+    }
+    // Employee Delete Logic - END
+
+    employeeInfo.innerHTML = `
+      <img src="${selectedEmployee.imageUrl}" />
+      <span class="employees__single--heading">
+      ${selectedEmployee.firstName} ${selectedEmployee.lastName} (${selectedEmployee.age})
+      </span>
+      <span>${selectedEmployee.address}</span>
+      <span>${selectedEmployee.email}</span>
+      <span>Mobile - ${selectedEmployee.contactNumber}</span>
+      <span>DOB - ${selectedEmployee.dob}</span>
+    `;
+  };
 })();
