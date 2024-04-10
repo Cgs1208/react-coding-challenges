@@ -8,7 +8,7 @@ const CurrencyConvertor = () => {
 
   return (
     <div className="max-w-xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
-      <h2 className="mb-5 text-2xl font-semibold text-gray-700">
+      <h2 className="mb-6 text-2xl font-semibold text-gray-700">
         CurrencyConvertor
       </h2>
       <div>Dropdowns</div>
