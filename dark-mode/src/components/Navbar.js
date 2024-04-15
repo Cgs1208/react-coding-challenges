@@ -11,6 +11,7 @@ const Navbar = () => {
         <Link to="/">Homepage</Link>
         <Link to="about">About</Link>
         <Link to="blog">Blog</Link>
+        <Link to="product">Product</Link>
       </div>
       <div className="mode-switch">
         <label>
