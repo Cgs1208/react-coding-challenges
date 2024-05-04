@@ -1,10 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //currencies = https://api.frankfurter.app/currencies - from frankfurter.app
 //currencies conversion = https://api.frankfurter.app/latest?amount=1&from=USD&to=INR
 
 const CurrencyConvertor = () => {
   const [currency, setCurrency] = useState([]);
   const [convertedAmount, setConvertedAmount] = useState(1);
+
+  const fetchCurrencies = async () => {
+    try {
+      const response = await fetch("https://api.frankfurter.app/currencies");
+      const data = await response.json();
+      const dataArray = Object.keys(data);
+      setCurrency(dataArray);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrencies();
+  }, []);
+
+  console.log(currency);
 
   return (
     <div className="max-w-xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
