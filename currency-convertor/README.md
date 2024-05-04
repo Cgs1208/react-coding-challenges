@@ -15,3 +15,4 @@
 - new 2 states for converted currency and isconverting state
 - we make new api call to convert the courrencies
 - we will have a new state for favourites and we will store our favourites in local storage so they persist
+- handle the adding and removing from favourites

@@ -16,7 +16,7 @@ const CurrencyConvertor = () => {
   const [isConverting, setIsConverting] = useState(false);
 
   const [favourites, setFavourites] = useState(
-    localStorage.getItem("favourites") || ["INR", "USD"]
+    JSON.parse(localStorage.getItem("favourites")) || ["INR", "USD"]
   );
 
   const fetchCurrencies = async () => {
@@ -32,6 +32,15 @@ const CurrencyConvertor = () => {
 
   const handleFavourites = (currency) => {
     //add or remove favourites
+    let updatedFavourites = [...favourites];
+    if (favourites.includes(currency)) {
+      updatedFavourites = favourites.filter((curr) => curr !== currency);
+    } else {
+      updatedFavourites.push(currency);
+    }
+
+    setFavourites(updatedFavourites);
+    localStorage.setItem("favourites", JSON.stringify(updatedFavourites));
   };
 
   const handleConversion = async () => {

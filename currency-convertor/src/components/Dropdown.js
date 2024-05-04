@@ -1,5 +1,5 @@
 import React from "react";
-import { HiOutlineStar } from "react-icons/hi";
+import { HiOutlineStar, HiStar } from "react-icons/hi";
 
 const Dropdown = ({
   currencies,
@@ -9,6 +9,7 @@ const Dropdown = ({
   handleFavourites,
   title = "",
 }) => {
+  const isFavourites = (currency) => favourites.includes(currency);
   return (
     <div>
       <label htmlFor={title} className="my-2 block text-sm text-gray-700">
@@ -41,7 +42,7 @@ const Dropdown = ({
           className="absolute inset-y-0 right-0 pr-5 flex items-center text-sm leading-5"
           onClick={() => handleFavourites(currency)}
         >
-          <HiOutlineStar />
+          {isFavourites(currency) ? <HiStar /> : <HiOutlineStar />}
         </button>
       </div>
     </div>
