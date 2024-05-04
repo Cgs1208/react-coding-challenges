@@ -22,12 +22,19 @@ const Dropdown = ({
         focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           {/* favourites */}
-          <hr />
-          {currencies.map((currency) => (
-            <option key={currency} value={currency}>
+          {favourites.map((currency) => (
+            <option key={currency} value={currency} className="bg-gray-300">
               {currency}
             </option>
           ))}
+          <hr />
+          {currencies
+            .filter((currency) => !favourites.includes(currency))
+            .map((currency) => (
+              <option key={currency} value={currency}>
+                {currency}
+              </option>
+            ))}
         </select>
 
         <button

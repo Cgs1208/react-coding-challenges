@@ -15,6 +15,10 @@ const CurrencyConvertor = () => {
   const [convertedAmount, setConvertedAmount] = useState("");
   const [isConverting, setIsConverting] = useState(false);
 
+  const [favourites, setFavourites] = useState(
+    localStorage.getItem("favourites") || ["INR", "USD"]
+  );
+
   const fetchCurrencies = async () => {
     try {
       const response = await fetch("https://api.frankfurter.app/currencies");
@@ -69,6 +73,7 @@ const CurrencyConvertor = () => {
           handleFavourites={handleFavourites}
           currency={fromCurrency}
           setCurrency={setFromCurrency}
+          favourites={favourites}
         />
         {/* swap currency button start*/}
         <div className="flex justify-center items-center">
@@ -86,6 +91,7 @@ const CurrencyConvertor = () => {
           handleFavourites={handleFavourites}
           currency={toCurrency}
           setCurrency={setToCurrency}
+          favourites={favourites}
         />
       </div>
       <div className="mt-4">

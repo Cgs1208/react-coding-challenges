@@ -14,3 +14,4 @@
 - we can add new icon for swap currency button and handle the logic for it (setfromcurrnecy to tocurrency and vide versa)
 - new 2 states for converted currency and isconverting state
 - we make new api call to convert the courrencies
+- we will have a new state for favourites and we will store our favourites in local storage so they persist
