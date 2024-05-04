@@ -16,6 +16,8 @@ const Dropdown = ({
       </label>
       <div className="mt-1 relative">
         <select
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
           className="border border-gray-400 shadow-sm rounded-md w-full p-1 
         focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
