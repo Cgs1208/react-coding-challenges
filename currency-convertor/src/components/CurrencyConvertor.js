@@ -7,10 +7,13 @@ import { FaArrowRightArrowLeft } from "react-icons/fa6";
 
 const CurrencyConvertor = () => {
   const [currency, setCurrency] = useState([]);
-  const [convertedAmount, setConvertedAmount] = useState(1);
+  const [amount, setAmount] = useState(1);
 
   const [fromCurrency, setFromCurrency] = useState("INR");
   const [toCurrency, setToCurrency] = useState("USD");
+
+  const [convertedAmount, setConvertedAmount] = useState("");
+  const [isConverting, setIsConverting] = useState(false);
 
   const fetchCurrencies = async () => {
     try {
@@ -27,8 +30,22 @@ const CurrencyConvertor = () => {
     //add or remove favourites
   };
 
-  const handleConversion = () => {
+  const handleConversion = async () => {
     //conversion logic
+    if (!amount) return;
+    setIsConverting(true);
+    try {
+      const response = await fetch(
+        `https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`
+      );
+      const data = await response.json();
+      setConvertedAmount(data.rates[toCurrency] + " " + toCurrency);
+    } catch (error) {
+      console.log(error);
+      setIsConverting(false);
+    } finally {
+      setIsConverting(false);
+    }
   };
 
   const handleSwapCurrency = () => {
@@ -43,7 +60,7 @@ const CurrencyConvertor = () => {
   return (
     <div className="max-w-xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
       <h2 className="mb-6 text-2xl font-semibold text-gray-700">
-        CurrencyConvertor
+        Currency converter
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 items-center gap-2">
         <Dropdown
@@ -53,7 +70,7 @@ const CurrencyConvertor = () => {
           currency={fromCurrency}
           setCurrency={setFromCurrency}
         />
-        {/* swap currency button */}
+        {/* swap currency button start*/}
         <div className="flex justify-center items-center">
           <button
             onClick={handleSwapCurrency}
@@ -62,6 +79,7 @@ const CurrencyConvertor = () => {
             <FaArrowRightArrowLeft />
           </button>
         </div>
+        {/* swap currency button end*/}
         <Dropdown
           currencies={currency}
           title="To:"
@@ -79,8 +97,8 @@ const CurrencyConvertor = () => {
         </label>
         <input
           type="number"
-          value={convertedAmount}
-          onChange={(e) => setConvertedAmount(e.target.value)}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 hover:ring-indigo-500 mt-1"
         />
       </div>
@@ -88,15 +106,18 @@ const CurrencyConvertor = () => {
       <div className="flex justify-end mt-6">
         <button
           onClick={handleConversion}
-          className={`px-5 py-2 bg-indigo-600 text-white rounded-md hover:outline-none hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2`}
+          className={`px-5 py-2 bg-indigo-600 text-white rounded-md hover:outline-none hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2
+          ${isConverting ? "animate-ping" : ""} `}
         >
           Convert
         </button>
       </div>
 
-      <div className="mt-4 text-lg font-medium text-right text-green-600">
-        Converted Amount: 68
-      </div>
+      {convertedAmount && (
+        <div className="mt-4 text-lg font-medium text-right text-green-600">
+          Converted Amount: {convertedAmount}
+        </div>
+      )}
     </div>
   );
 };
