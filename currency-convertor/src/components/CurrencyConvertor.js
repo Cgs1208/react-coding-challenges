@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import Dropdown from "./Dropdown";
 //currencies = https://api.frankfurter.app/currencies - from frankfurter.app
 //currencies conversion = https://api.frankfurter.app/latest?amount=1&from=USD&to=INR
 
 const CurrencyConvertor = () => {
   const [currency, setCurrency] = useState([]);
   const [convertedAmount, setConvertedAmount] = useState(1);
+
+  const [fromCurrency, setFromCurrency] = useState("INR");
+  const [toCurrency, setToCurrency] = useState("USD");
 
   const fetchCurrencies = async () => {
     try {
@@ -28,7 +32,10 @@ const CurrencyConvertor = () => {
       <h2 className="mb-6 text-2xl font-semibold text-gray-700">
         CurrencyConvertor
       </h2>
-      <div>Dropdowns</div>
+      <div>
+        <Dropdown currencies={currency} title="From:" />
+        <Dropdown currencies={currency} title="To:" />
+      </div>
       <div className="mt-4">
         <label
           htmlFor="amount"

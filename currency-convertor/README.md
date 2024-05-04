@@ -5,4 +5,8 @@
 - in the separate component we made for currency convetor, we can add content
 - we build the ui by adding headind, dropdown, input , convert button , converted amount
 - we create states for the currencies fetched and one more state for converted amount
--
+- fetch currencies and set the state , but since we get the object response we need to set it with Object.keys(data) then we can set array to the state
+- now we create a onClick function for the convert button
+- render the currencies in the dropdown and we use same dropdown component for to and from currency
+- two more states for fromCurrency and toCurrency
+- so we use same dropdown component for 2 dropdowns and build a button in betweem them for swapping
