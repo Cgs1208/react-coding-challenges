@@ -21,11 +21,17 @@ const CurrencyConvertor = () => {
     }
   };
 
+  const handleFavourites = (currency) => {
+    //add or remove favourites
+  };
+
+  const handleConversion = () => {
+    //conversion logic
+  };
+
   useEffect(() => {
     fetchCurrencies();
   }, []);
-
-  console.log(currency);
 
   return (
     <div className="max-w-xl mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
@@ -33,8 +39,20 @@ const CurrencyConvertor = () => {
         CurrencyConvertor
       </h2>
       <div>
-        <Dropdown currencies={currency} title="From:" />
-        <Dropdown currencies={currency} title="To:" />
+        <Dropdown
+          currencies={currency}
+          title="From:"
+          handleFavourites={handleFavourites}
+          currency={fromCurrency}
+          setCurrency={setFromCurrency}
+        />
+        <Dropdown
+          currencies={currency}
+          title="To:"
+          handleFavourites={handleFavourites}
+          currency={toCurrency}
+          setCurrency={setToCurrency}
+        />
       </div>
       <div className="mt-4">
         <label
@@ -53,7 +71,8 @@ const CurrencyConvertor = () => {
 
       <div className="flex justify-end mt-6">
         <button
-          className={`px-5 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700`}
+          onClick={handleConversion}
+          className={`px-5 py-2 bg-indigo-600 text-white rounded-md hover:outline-none hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2`}
         >
           Convert
         </button>

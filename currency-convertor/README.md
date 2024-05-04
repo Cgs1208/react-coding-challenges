@@ -10,3 +10,4 @@
 - render the currencies in the dropdown and we use same dropdown component for to and from currency
 - two more states for fromCurrency and toCurrency
 - so we use same dropdown component for 2 dropdowns and build a button in betweem them for swapping
+- after the dropdown we import react-icons for \* icons to add to favourties and also make dummy methods to handle convertion and adding to favourites
