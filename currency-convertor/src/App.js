@@ -4,7 +4,9 @@ import CurrencyConvertor from "./components/CurrencyConvertor";
 function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
-      <CurrencyConvertor />
+      <div className="container">
+        <CurrencyConvertor />
+      </div>
     </div>
   );
 }

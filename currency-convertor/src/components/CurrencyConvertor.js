@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
+
 //currencies = https://api.frankfurter.app/currencies - from frankfurter.app
 //currencies conversion = https://api.frankfurter.app/latest?amount=1&from=USD&to=INR
 
@@ -29,6 +31,11 @@ const CurrencyConvertor = () => {
     //conversion logic
   };
 
+  const handleSwapCurrency = () => {
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+  };
+
   useEffect(() => {
     fetchCurrencies();
   }, []);
@@ -38,7 +45,7 @@ const CurrencyConvertor = () => {
       <h2 className="mb-6 text-2xl font-semibold text-gray-700">
         CurrencyConvertor
       </h2>
-      <div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 items-center gap-2">
         <Dropdown
           currencies={currency}
           title="From:"
@@ -46,6 +53,15 @@ const CurrencyConvertor = () => {
           currency={fromCurrency}
           setCurrency={setFromCurrency}
         />
+        {/* swap currency button */}
+        <div className="flex justify-center items-center">
+          <button
+            onClick={handleSwapCurrency}
+            className="bg-gray-300 rounded-full p-2 hover:bg-gray-400 -mb-5"
+          >
+            <FaArrowRightArrowLeft />
+          </button>
+        </div>
         <Dropdown
           currencies={currency}
           title="To:"
