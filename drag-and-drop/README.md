@@ -1,0 +1,4 @@
+- json data is provided which can be displayed as notes
+- we use that data directly as state
+- we use separate component to display the note div seprately by looping through notes array state
+- use proper cursors on notes to give good effect
