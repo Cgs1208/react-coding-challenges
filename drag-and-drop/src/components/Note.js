@@ -1,15 +1,15 @@
 import React from "react";
 
-const Note = ({ content }) => {
+const Note = ({ content, initialPos }) => {
   return (
     <div
       style={{
         position: "absolute",
-        top: 0,
-        left: 0,
+        top: `${initialPos?.y}px`,
+        left: `${initialPos?.x}px`,
         width: "200px",
         border: "1px solid black",
-        backgroundColor: "light yellow",
+        backgroundColor: "yellow",
         userSelect: "none",
         cursor: "move",
       }}
