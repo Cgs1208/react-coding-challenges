@@ -2,3 +2,5 @@
 - we use that data directly as state
 - we use separate component to display the note div seprately by looping through notes array state
 - use proper cursors on notes to give good effect
+- we add logic for notes to take random position on the screen
+- we store the position in local storage so it persists even after page is reloaded

@@ -5,13 +5,13 @@ import { useEffect } from "react";
 const Notes = ({ notes = [], setNotes = () => {} }) => {
   useEffect(() => {
     //local storage logic
-    const savedNotes = [];
+    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
 
     const updatedNotes = notes.map((note) => {
-      const savedNote = null;
+      const savedNote = savedNotes.find((n) => n.id === note.id);
 
       if (savedNote) {
-        return {};
+        return { ...note, position: savedNote.position };
       } else {
         const position = determineNewPosition();
         return { ...note, position };
@@ -19,6 +19,7 @@ const Notes = ({ notes = [], setNotes = () => {} }) => {
     });
 
     setNotes(updatedNotes);
+    localStorage.setItem("notes", JSON.stringify(updatedNotes));
   }, [notes.length]);
 
   const determineNewPosition = () => {
