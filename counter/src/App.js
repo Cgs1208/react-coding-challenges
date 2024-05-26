@@ -2,8 +2,20 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>counter</h1>
+    <div
+      style={{
+        marginTop: "30px",
+        display: "flex",
+        flexDirection: "column",
+        rowGap: "10px",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div>
+        <button>Start</button>
+      </div>
+      <div>0</div>
     </div>
   );
 }
