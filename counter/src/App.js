@@ -5,6 +5,10 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
+  const handleCounter = () => {
+    setIsRunning(!isRunning);
+  };
+
   return (
     <div
       style={{
@@ -17,7 +21,7 @@ function App() {
       }}
     >
       <div>
-        <button>{isRunning ? "Stop" : "Start"}</button>
+        <button onClick={handleCounter}>{isRunning ? "Stop" : "Start"}</button>
       </div>
       <div>{counter}</div>
     </div>
