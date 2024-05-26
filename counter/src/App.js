@@ -1,6 +1,10 @@
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+
   return (
     <div
       style={{
@@ -13,9 +17,9 @@ function App() {
       }}
     >
       <div>
-        <button>Start</button>
+        <button>{isRunning ? "Stop" : "Start"}</button>
       </div>
-      <div>0</div>
+      <div>{counter}</div>
     </div>
   );
 }
