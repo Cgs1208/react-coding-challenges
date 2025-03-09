@@ -8,7 +8,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const totalPages = Math.ceil(products.length * PRODUCTS_PER_PAGE);
+  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
   const start = currentPage * PRODUCTS_PER_PAGE;
   const end = start + PRODUCTS_PER_PAGE;
 
@@ -22,6 +22,18 @@ function App() {
     fetchData();
   }, []);
 
+  const handlePageChange = (n) => {
+    setCurrentPage(n);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevState) => prevState - 1);
+  };
+
+  const handleNextPAge = () => {
+    setCurrentPage((prevState) => prevState + 1);
+  };
+
   return !products.length > 0 ? (
     <span>No products fetched</span>
   ) : (
@@ -32,9 +44,29 @@ function App() {
         ))}
       </div>
       <div className="page-container">
-        {[...Array(10).keys()].map((n) => (
-          <span className="page-num">{n}</span>
+        <button
+          disabled={currentPage === 0}
+          className="page-num"
+          onClick={handlePrevPage}
+        >
+          ⏮️
+        </button>
+        {[...Array(totalPages).keys()].map((n) => (
+          <button
+            className="page-num"
+            key={n}
+            onClick={() => handlePageChange(n)}
+          >
+            {n}
+          </button>
         ))}
+        <button
+          disabled={currentPage === totalPages - 1}
+          className="page-num"
+          onClick={handleNextPAge}
+        >
+          ⏭️
+        </button>
       </div>
     </div>
   );
