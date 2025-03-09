@@ -14,7 +14,7 @@ const PhoneOtpForm = () => {
 
     //phone number validation
     const regex = /[^0-9]/g;
-    if (phoneNumber.length < 0 || regex.test(phoneNumber)) {
+    if (phoneNumber.length !== 10 || regex.test(phoneNumber)) {
       alert("wrong phone number");
       return;
     }
@@ -30,7 +30,12 @@ const PhoneOtpForm = () => {
     <div>
       {!showOtpInput ? (
         <form onSubmit={handlePhoneSubmit}>
-          <input type="text" onChange={handlePhoneNumber} value={phoneNumber} />
+          <input
+            type="text"
+            onChange={handlePhoneNumber}
+            value={phoneNumber}
+            style={{ margin: "4px" }}
+          />
           <button type="submit">Submit</button>
         </form>
       ) : (
