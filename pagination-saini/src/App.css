@@ -60,3 +60,13 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 5px;
 }
+
+.page-container {
+  margin-top: 10px;
+}
+
+.page-num {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid black;
+}
