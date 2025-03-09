@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Product from "./components/Product";
-
-const PRODUCTS_PER_PAGE = 10;
+import { PRODUCTS_PER_PAGE } from "./constants";
+import Pagination from "./components/Pagination";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -43,31 +43,13 @@ function App() {
           <Product key={prod.id} image={prod.thumbnail} title={prod.title} />
         ))}
       </div>
-      <div className="page-container">
-        <button
-          disabled={currentPage === 0}
-          className="page-num"
-          onClick={handlePrevPage}
-        >
-          ⏮️
-        </button>
-        {[...Array(totalPages).keys()].map((n) => (
-          <button
-            className="page-num"
-            key={n}
-            onClick={() => handlePageChange(n)}
-          >
-            {n}
-          </button>
-        ))}
-        <button
-          disabled={currentPage === totalPages - 1}
-          className="page-num"
-          onClick={handleNextPAge}
-        >
-          ⏭️
-        </button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handleNextPAge={handleNextPAge}
+        handlePrevPage={handlePrevPage}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 }
