@@ -1,0 +1,9 @@
+.result {
+  display: block;
+  padding: 4px;
+}
+
+.result:hover {
+  background-color: bisque;
+  cursor: pointer;
+}
