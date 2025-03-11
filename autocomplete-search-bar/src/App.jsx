@@ -14,10 +14,12 @@ function App() {
     setResults(jsonData?.recipes);
   };
 
-  console.log(results);
-
   useEffect(() => {
-    fetchResults();
+    const timer = setTimeout(fetchResults, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [input]);
 
   return (
