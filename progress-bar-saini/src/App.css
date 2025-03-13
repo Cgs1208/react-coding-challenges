@@ -7,5 +7,6 @@
 .inner {
   background-color: lightgreen;
   padding: 3px;
-  text-align: center;
+  text-align: right;
+  transition: 1s ease-in;
 }
