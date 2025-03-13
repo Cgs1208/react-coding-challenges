@@ -1,0 +1,11 @@
+.outer {
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.inner {
+  background-color: lightgreen;
+  padding: 3px;
+  text-align: center;
+}
